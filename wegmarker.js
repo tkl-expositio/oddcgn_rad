@@ -67,7 +67,11 @@ function init(){
     map.addLayer(layer);
     // make_layer aus overpass_api -> alles nodes mit surface tag
     map.addLayers([
-    make_layer("http://overpass-api.de/api/interpreter?data=[timeout:1];node[highway=cycleway](bbox);out+skel;(way[highway=cycleway](bbox);node(w););out+skel;", "green")]);
+    make_layer("http://overpass-api.de/api/interpreter?data=[timeout:1];node[surface=asphalt](bbox);out+skel;(way[surface=asphalt](bbox);node(w););out+skel;", "#2c2c2c"),
+    make_layer("http://overpass-api.de/api/interpreter?data=[timeout:1];node[surface=dirt](bbox);out+skel;(way[surface=dirt](bbox);node(w););out+skel;", "#5DE232"),
+    make_layer("http://overpass-api.de/api/interpreter?data=[timeout:1];node[surface=paving_stones](bbox);out+skel;(way[surface=paving_stones](bbox);node(w););out+skel;", "#B6B6B6"),
+    make_layer("http://overpass-api.de/api/interpreter?data=[timeout:1];node[surface=compacted](bbox);out+skel;(way[surface=compacted](bbox);node(w););out+skel;", "#A52A2A")
+    ]);
 
 
 
