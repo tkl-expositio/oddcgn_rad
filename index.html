@@ -9,17 +9,33 @@
     <link rel="stylesheet" href="style2.css" type="text/css">
     <script src="http://openlayers.org/api/OpenLayers.js"></script>
     <script type="text/javascript">
-        var map, layer;
-        function init(){
-            map = new OpenLayers.Map( 'map');
-            layer = new OpenLayers.Layer.OSM( "Simple OSM Map");
-            map.addLayer(layer);
-            map.setCenter(
-                new OpenLayers.LonLat(-71.147, 42.472).transform(
+        
+    var map, layer;
+    function init(){
+    
+    navigator.geolocation.getCurrentPosition(successCallback,
+                                               errorCallback,
+                                              {maximumAge:600000});
+
+    function successCallback(position) {
+              // By using the 'maximumAge' option above, the position
+              // object is guaranteed to be at most 10 minutes old.
+                        map.setCenter(
+                new OpenLayers.LonLat(position.coords.longitude, position.coords.latitude).transform(
                     new OpenLayers.Projection("EPSG:4326"),
                     map.getProjectionObject()
                 ), 12
-            );    
+                );
+    }
+    function errorCallback(error) {
+              // Update a div element with error.message.
+            }
+
+
+            map = new OpenLayers.Map( 'map');
+            layer = new OpenLayers.Layer.OSM( "Simple OSM Map");
+            map.addLayer(layer);
+    
         }
     </script>
   </head>
