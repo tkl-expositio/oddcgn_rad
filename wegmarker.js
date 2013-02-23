@@ -33,5 +33,10 @@ function errorCallback(error) {
     }
 
 function senddata() {
+  var surface;
+
+  surface = $('#surface').val();
+  
+
   return true;
 }
