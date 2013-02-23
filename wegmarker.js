@@ -84,7 +84,17 @@ function getNodes(bbox) {
    xml = $.get(url, function(data) {
       alert("Data Loaded: " + data);
       xmlDoc = $.parseXML( xml.responseText );
-      alert(xmlDoc);
+      $.ajax({
+        url: "http://api.openstreetmap.org/api/0.6/changeset/create",
+        type: "PUT",
+        username: "wegmarker_bot",
+        password: "barrierpothole",
+        success: function(data)
+        {
+          alert("PUT: " + data);
+        }
+      });
+      
     return data;});
 }
 
