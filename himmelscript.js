@@ -5,6 +5,8 @@ function start_himmel(){
 
   var outerwrapper = document.getElementById('outerwrapper');
   outerwrapper.style.height = window.innerHeight + "px";
+
+  
 }
 
 function push_himmel(){
