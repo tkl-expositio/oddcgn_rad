@@ -83,12 +83,9 @@ function getNodes(bbox) {
   url = "http://overpass-api.de/api/interpreter?data=way[highway=cycleway](" + (LAT - 0.005) + "," + (LON - 0.005) + "," + (LAT + 0.005) + "," + (LON + 0.005) + ");out+meta;";
    xml = $.get(url, function(data) {
       alert("Data Loaded: " + data);
+      xmlDoc = $.parseXML( xml.responseText );
+      alert(xmlDoc);
     return data;});
-   xmlDoc = $.parseXML( xml.responseText );
-
-
-
-
 }
 
 
