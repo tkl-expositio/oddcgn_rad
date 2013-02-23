@@ -93,6 +93,7 @@ a {
   margin: 20px 0 40px;
   -webkit-appearance: none;
   background-color: #fff;
+  padding: 0 5px;
 }
 
 #useraction option {
