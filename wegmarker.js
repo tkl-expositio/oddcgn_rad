@@ -2,10 +2,11 @@
         
 var map, layer;
 function init(){
+ var LON = 0,
+     LAT= 0;
 
-navigator.geolocation.getCurrentPosition(successCallback,
-                                           errorCallback,
-                                          {maximumAge:600000});
+
+
 
     function successCallback(position) {
               // By using the 'maximumAge' option above, the position
@@ -16,21 +17,45 @@ navigator.geolocation.getCurrentPosition(successCallback,
                     map.getProjectionObject()
                 ), 15
                 );
-                LON = parseInt(position.coords.longitude);
-                LAT = parseInt(position.coords.latitude);
+                LON = parseFloat(position.coords.longitude);
+                LAT = parseFloat(position.coords.latitude);
                 console.log("LAT:" + position.coords.latitude +" LONG:" + position.coords.longitude);
+
+                    var lonLat = new OpenLayers.LonLat( LON , LAT )
+                                .transform(
+                                  new OpenLayers.Projection("EPSG:4326"), // transform from WGS 1984
+                                  map.getProjectionObject() // to Spherical Mercator Projection
+                                );
+
+                    var markers = new OpenLayers.Layer.Markers( "Markers" );
+                    map.addLayer(markers);
+
+                    markers.addMarker(new OpenLayers.Marker(lonLat));
+
     }
+
+
 
     function errorCallback(error) {
               // Update a div element with error.message.
     }
 
+
+
     map = new OpenLayers.Map( 'map');
+    navigator.geolocation.getCurrentPosition(successCallback,
+                                           errorCallback,
+                                          {maximumAge:600000});
+
     layer = new OpenLayers.Layer.OSM( "Simple OSM Map");
     map.addLayer(layer);
     // make_layer aus overpass_api -> alles nodes mit surface tag
     map.addLayers([
-    make_layer("http://overpass-api.de/api/interpreter?data=[timeout:1];node[surface](bbox);out+skel;(way[surface](bbox);node(w););out+skel;", "green")])
+    make_layer("http://overpass-api.de/api/interpreter?data=[timeout:1];node[surface](bbox);out+skel;(way[surface](bbox);node(w););out+skel;", "green")]);
+
+
+
+
 }
 
 // OSM XML abrufen -> Nur Radwege in der bbox
