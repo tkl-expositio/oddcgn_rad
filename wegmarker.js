@@ -40,5 +40,10 @@ function getNodes(bbox) {
 }
 
 function senddata() {
+  var surface;
+
+  surface = $('#surface').val();
+  
+
   return true;
 }
