@@ -17,23 +17,34 @@ unset IFS
 
 wget -O /tmp/wegmarker.osm "http://api.openstreetmap.org/api/0.6/way/$WAY_ID"
 
-# CHANGESET_ID=`curl -u "wegmarker_bot:barrierpothole" -T changeset.osm -XPUT "http://api.openstreetmap.org/api/0.6/changeset/create"`
+CHANGESET_ID=`curl -u "wegmarker_bot:barrierpothole" -T changeset.osm -XPUT "http://api.openstreetmap.org/api/0.6/changeset/create"`
 
 echo "Changeset id: $CHANGESET_ID"
 echo "Way id: $WAY_ID"
 echo "Value: $VALUE"
 echo "Q: $QUERY_STRING"
 
-echo '{ if ($1 == "<way") { show = 1; cpos = index($0,"changeset="); qpos = index(substr($0,cpos+11),"\""); way = substr($0,1,cpos-1) "changeset=\"'$CHANGESET_ID'\" " substr($0,cpos + qpos + 12); cpos = index(way,"user="); qpos = index(substr(way,cpos+6),"\""); way = substr(way,1,cpos-1) substr(way,cpos + qpos + 7); cpos = index(way,"uid="); qpos = index(substr(way,cpos+5),"\""); way = substr(way,1,cpos-1) substr(way,cpos + qpos + 6); print way; } else { if ($1 == "</way>") { print "    <tag k=\"surface\" v=\"'$VALUE'\"/>"; print "  </way>"; show = 0; } if (show && $2 != "k=\"gauge\"") print $0; } }' >/tmp/wegmarker_awk
+echo '{ if ($1 == "<way") { show = 1;' >/tmp/wegmarker_awk
+echo ' cpos = index($0,"changeset="); qpos = index(substr($0,cpos+11),"\""); way = substr($0,1,cpos-1) "changeset=\"'$CHANGESET_ID'\" " substr($0,cpos + qpos + 12);' >>/tmp/wegmarker_awk
+echo ' cpos = index(way,"user="); qpos = index(substr(way,cpos+6),"\""); way = substr(way,1,cpos-1) substr(way, cpos + qpos + 7);' >>/tmp/wegmarker_awk
+# echo ' cpos = index(way,"uid="); qpos = index(substr(way,cpos+5),"\""); way = substr(way,1,cpos-1) substr(way, cpos + qpos + 6);' >>/tmp/wegmarker_awk
+echo ' cpos = index(way,"uid="); qpos = index(substr(way,cpos+5),"\"");' >>/tmp/wegmarker_awk
+echo 'print substr(way,1,cpos-1) substr(way, cpos + qpos + 5); } else { if ($1 == "</way>") { print "    <tag k=\"surface\" v=\"'$VALUE'\"/>"; print "  </way>"; show = 0; } if (show && $2 != "k=\"surface\"") print $0; } }' >>/tmp/wegmarker_awk
 
-echo "<osmChange version=\"0.6\" generator=\"wegmarker_bot\">"
-echo "  <modify>"
-echo
-cat </tmp/wegmarker.osm | awk -f /tmp/wegmarker_awk
-echo
-echo "  </modify>"
-echo "</osmChange>"
+echo "<osmChange version=\"0.6\" generator=\"wegmarker_bot\">" >/tmp/changeset.osm
+echo "  <modify>" >>/tmp/changeset.osm
+echo >>/tmp/changeset.osm
+cat </tmp/wegmarker.osm | awk -f /tmp/wegmarker_awk >>/tmp/changeset.osm
+echo >>/tmp/changeset.osm
+echo "  </modify>" >>/tmp/changeset.osm
+echo "</osmChange>" >>/tmp/changeset.osm
 
-# curl -u "wegmarker_bot:barrierpothole" -XPUT "http://api.openstreetmap.org/api/0.6/changeset/$CHANGESET_ID/close"
+cat </tmp/changeset.osm
 
-# cpos = index($0,"changeset="); qpos = index(substr($0,cpos+11),"\""); way = substr($0,1,cpos-1) "changeset=\"'$CHANGESET_ID'\" " substr(way,cpos + qpos + 12);
+curl -v -u "wegmarker_bot:barrierpothole" -T /tmp/changeset.osm -XPOST "http://api.openstreetmap.org/api/0.6/changeset/$CHANGESET_ID/upload"
+
+echo "upload done"
+
+curl -v -u "wegmarker_bot:barrierpothole" -XPUT "http://api.openstreetmap.org/api/0.6/changeset/$CHANGESET_ID/close"
+
+echo "close done"
