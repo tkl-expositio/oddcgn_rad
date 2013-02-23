@@ -12,46 +12,39 @@
         
     var map, layer;
     function init(){
-    
-    navigator.geolocation.getCurrentPosition(successCallback,
-                                               errorCallback,
-                                              {maximumAge:600000});
+      navigator.geolocation.getCurrentPosition(successCallback,
+                                                 errorCallback,
+                                                {maximumAge:600000});
 
-    function successCallback(position) {
-              // By using the 'maximumAge' option above, the position
-              // object is guaranteed to be at most 10 minutes old.
-                        map.setCenter(
-                new OpenLayers.LonLat(position.coords.longitude, position.coords.latitude).transform(
-                    new OpenLayers.Projection("EPSG:4326"),
-                    map.getProjectionObject()
-                ), 12
-                );
-    }
-    function errorCallback(error) {
-              // Update a div element with error.message.
-            }
+      function successCallback(position) {
+                // By using the 'maximumAge' option above, the position
+                // object is guaranteed to be at most 10 minutes old.
+                          map.setCenter(
+                  new OpenLayers.LonLat(position.coords.longitude, position.coords.latitude).transform(
+                      new OpenLayers.Projection("EPSG:4326"),
+                      map.getProjectionObject()
+                  ), 12
+                  );
+      }
 
+      function errorCallback(error) {
+                // Update a div element with error.message.
+      }
+              map = new OpenLayers.Map( 'map');
+              layer = new OpenLayers.Layer.OSM( "Simple OSM Map");
+              map.addLayer(layer);
+      
+      }
 
-            map = new OpenLayers.Map( 'map');
-            layer = new OpenLayers.Layer.OSM( "Simple OSM Map");
-            map.addLayer(layer);
-    
-        }
     </script>
   </head>
   <body onload="init()">
-    <h1 id="title">Basic OSM Example</h1>
+    <h1 id="title">wegmarker.de</h1>
 
-    <div id="tags">
-        openstreetmap basic light
-    </div>
 
-    <div id="shortdesc">Show a Simple OSM Map</div>
 
     <div id="map" class="smallmap"></div>
 
-    <div id="docs">
-        <p>This example shows a very simple OSM layout with minimal controls.</p> 
-    </div>
+
   </body>
 </html>
