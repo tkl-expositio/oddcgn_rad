@@ -5,17 +5,6 @@ function init(){
  var LON = 0,
      LAT= 0;
 
-      $.ajax({
-        url: "http://api.openstreetmap.org/api/0.6/changeset/create",
-        type: "PUT",
-        username: "wegmarker_bot",
-        password: "barrierpothole",
-        success: function(data)
-        {
-          alert("PUT: " + data);
-        }
-      });
-
 
 
     function successCallback(position) {
