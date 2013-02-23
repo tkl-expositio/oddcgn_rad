@@ -97,19 +97,10 @@ function getNodes(bbox) {
   url = "http://overpass-api.de/api/interpreter?data=way[highway=cycleway](" + (LAT - 0.005) + "," + (LON - 0.005) + "," + (LAT + 0.005) + "," + (LON + 0.005) + ");out+meta;";
    xml = $.get(url, function(data) {
       alert("Data Loaded: " + data);
-      xmlDoc = $.parseXML( xml.responseText );
-      $.ajax({
-        url: "http://api.openstreetmap.org/api/0.6/changeset/create",
-        type: "PUT",
-        username: "wegmarker_bot",
-        password: "barrierpothole",
-        success: function(data)
-        {
-          alert("PUT: " + data);
-        }
-      });
-      
     return data;});
+
+   wayid = xml.responseText;
+   wayid = wayid.match(/.*way id=\"(\d*)*./)[1];
 }
 
 
