@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="viewport" content="width=640px, initial-scale=0.5">
+    <meta name="viewport" content="width=640, initial-scale=0.5">
 
     <meta name="HandheldFriendly" content="true"/>
 
@@ -20,10 +20,11 @@
     <script src="http://openlayers.org/api/OpenLayers.js"></script>
     <script src="http://overpass-api.de/overpass.js"></script>
     <script src="wegmarker.js"></script>
+    <script src="himmelscript.js"></script>
 
   </head>
 
-  <body onload="init()">
+  <body onload="init();start_himmel();">
     <div id="wrapper">
       <div id="alpha">alpha</div>
       <div class="inner">
@@ -35,10 +36,11 @@
           <select id="surface" onchange="senddata()" name="surface">
             <option value="" id="auswahl">Wie ist der aktuelle Weg?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#9660;</option>
             <option value="asphalt" id="asphalt">glatter Asphalt</option>
-            <option value="damaged_asphalt" id="damaged_asphalt">Asphalt mit Schlaglöchern</option>
+            <!-- <option value="damaged_asphalt" id="damaged_asphalt">Asphalt mit Schlaglöchern</option> -->
             <option value="paving_stones" id="paving_stones">Kopfsteinpflaster</option>
             <option value="compacted" id="compacted">Trampelpfad</option>
             <option value="dirt" id="dirt">Natur/Schmutz</option>
+
           </select>
         </div>
         <div id="docs">
