@@ -23,7 +23,11 @@ function init(){
                 console.log("LAT:" + position.coords.latitude +" LONG:" + position.coords.longitude);
 
                 // Grenzen für die Karte (wie unten bei getNodes())
-                var extent = new OpenLayers.Bounds((LON - 0.0005), (LAT - 0.0005), (LON + 0.0005), (LAT + 0.005));
+                var extent = new OpenLayers.Bounds((LON - 0.0005), (LAT - 0.0005), (LON + 0.0005), (LAT + 0.0005));
+                extent.transform(
+                        new OpenLayers.Projection("EPSG:4326"),
+                        map.getProjectionObject()
+                )
 
                 // Karten auf die Grenzen zoomen
                 map.zoomToExtent(extent);
@@ -49,7 +53,7 @@ function init(){
 
     // Map options
     var options = {
-                restrictedExtent: extent
+             //   restrictedExtent: extent
             };
 
     map = new OpenLayers.Map( 'map', options);
