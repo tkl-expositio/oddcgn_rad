@@ -23,13 +23,12 @@ function init(){
                 console.log("LAT:" + position.coords.latitude +" LONG:" + position.coords.longitude);
 
                 // Grenzen für die Karte (wie unten bei getNodes())
-                var extent = new OpenLayers.Bounds((LON - 0.0005), (LAT - 0.0005), (LON + 0.0005), (LAT + 0.0005));
+                var extent = new OpenLayers.Bounds((LON - 0.005), (LAT - 0.005), (LON + 0.005), (LAT + 0.005));
                 extent.transform(
                         new OpenLayers.Projection("EPSG:4326"),
                         map.getProjectionObject()
                 )
-                // Verschieben der Karte verhindern
-                map.setOptions({restrictedExtent: extent})
+
                 // Karten auf die Grenzen zoomen
                 map.zoomToExtent(extent);
 
@@ -68,7 +67,7 @@ function init(){
     map.addLayer(layer);
     // make_layer aus overpass_api -> alles nodes mit surface tag
     map.addLayers([
-    make_layer("http://overpass-api.de/api/interpreter?data=[timeout:1];node[surface](bbox);out+skel;(way[surface](bbox);node(w););out+skel;", "green")]);
+    make_layer("http://overpass-api.de/api/interpreter?data=[timeout:1];node[highway=cycleway](bbox);out+skel;(way[highway=cycleway](bbox);node(w););out+skel;", "green")]);
 
 
 
@@ -77,11 +76,21 @@ function init(){
 
 // OSM XML abrufen -> Nur Radwege in der bbox
 function getNodes(bbox) {
-  url = "http://overpass-api.de/api/interpreter?data=way[highway=cycleway](" + (LAT - 0.0005) + "," + (LON - 0.0005) + "," + (LAT + 0.0005) + "," + (LON + 0.0005) + ");out+meta;";
-  $.get(url, function(data) {
-    alert("Data Loaded: " + data);
-  return data;});
+  // map.getMapExtent() kartenauschnitt in proj. Ko.Daten
+  var LON = 7,
+      LAT = 51;
+
+  url = "http://overpass-api.de/api/interpreter?data=way[highway=cycleway](" + (LAT - 0.005) + "," + (LON - 0.005) + "," + (LAT + 0.005) + "," + (LON + 0.005) + ");out+meta;";
+   xml = $.get(url, function(data) {
+      alert("Data Loaded: " + data);
+    return data;});
+   xmlDoc = $.parseXML( xml.responseText );
+
+
+
+
 }
+
 
 function senddata() {
   var surface = 0;
