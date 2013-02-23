@@ -47,7 +47,7 @@ function init(){
     // Grenzen für die Karte (wie unten bei getNodes())
     var extent = new OpenLayers.Bounds(8, 44.5, 19, 50);
 
-    map = new OpenLayers.Map( 'map');
+    map = new OpenLayers.Map( 'map', options);
     navigator.geolocation.getCurrentPosition(successCallback,
                                            errorCallback,
                                           {maximumAge:600000});
