@@ -10,40 +10,8 @@
     <script src="http://openlayers.org/api/OpenLayers.js"></script>
     <!-- Overpass API für einfachere Layer -->
     <script src="http://overpass-api.de/overpass.js"></script>
-    <script type="text/javascript">
-        
-    var map, layer;
-    function init(){
-    
-    navigator.geolocation.getCurrentPosition(successCallback,
-                                               errorCallback,
-                                              {maximumAge:600000});
+    <script src="wegmarker.js"></script>
 
-    function successCallback(position) {
-              // By using the 'maximumAge' option above, the position
-              // object is guaranteed to be at most 10 minutes old.
-              map.setCenter(
-                new OpenLayers.LonLat(position.coords.longitude, position.coords.latitude).transform(
-                    new OpenLayers.Projection("EPSG:4326"),
-                    map.getProjectionObject()
-                ), 15
-                );
-                console.log("LAT:" + position.coords.latitude +" LONG:" + position.coords.longitude);
-    }
-
-    function errorCallback(error) {
-              // Update a div element with error.message.
-            }
-
-            map = new OpenLayers.Map( 'map');
-            layer = new OpenLayers.Layer.OSM( "Simple OSM Map");
-            map.addLayer(layer);
-            // make_layer aus overpass_api -> alles nodes mit surface tag
-            map.addLayers([
-              make_layer("http://overpass-api.de/api/interpreter?data=[timeout:1];node[surface](bbox);out+skel;(way[surface](bbox);node(w););out+skel;", "green")])
-    
-        }
-    </script>
   </head>
   <body onload="init()">
     <h1 id="title">wegmarker.de</h1>
@@ -53,7 +21,7 @@
     <div id="map" class="smallmap"></div>
     <div id="useraction">
       Dein Wegkommentar zum aktuellen Abschnitt:
-      <select name="surface">
+      <select onchange="senddata()"name="surface">
         <option value="asphalt">perfekt</option>
         <option value="paving_stones">gut</option>
         <option value="compacted">natur Weg</option>
