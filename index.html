@@ -22,17 +22,18 @@
     function successCallback(position) {
               // By using the 'maximumAge' option above, the position
               // object is guaranteed to be at most 10 minutes old.
-                        map.setCenter(
+              map.setCenter(
                 new OpenLayers.LonLat(position.coords.longitude, position.coords.latitude).transform(
                     new OpenLayers.Projection("EPSG:4326"),
                     map.getProjectionObject()
                 ), 15
                 );
+                console.log("LAT:" + position.coords.latitude +" LONG:" + position.coords.longitude);
     }
+
     function errorCallback(error) {
               // Update a div element with error.message.
             }
-
 
             map = new OpenLayers.Map( 'map');
             layer = new OpenLayers.Layer.OSM( "Simple OSM Map");
@@ -50,7 +51,15 @@
 
 
     <div id="map" class="smallmap"></div>
-
+    <div id="useraction">
+      Dein Wegkommentar zum aktuellen Abschnitt:
+      <select name="surface">
+        <option value="asphalt">perfekt</option>
+        <option value="paving_stones">gut</option>
+        <option value="compacted">natur Weg</option>
+        <option value="dirt">MTB</option>
+      </select>
+    </div>
 
   </body>
 </html>
