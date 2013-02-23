@@ -14,11 +14,12 @@ blau: #729fcf;
 
 a img {border:none;}
 
-/*
 
- * Basic Typography
+a {
+  color: #fff;
+  text-decoration: underline;
+}
 
-*/
 
 html {
   background-size: 500px auto;
@@ -37,11 +38,21 @@ body {
   border: 1px solid rgba(0,0,0,0);
   background: url(himmel_50.png);  
   background-size: 700px;
-}
 
-a {
-  color: #fff;
-  text-decoration: underline;
+  /* Firefox */
+  display:-moz-box;
+  -moz-box-pack:center;
+  -moz-box-align:center;
+
+  /* Safari, Opera, and Chrome */
+  display:-webkit-box;
+  -webkit-box-pack:center;
+  -webkit-box-align:center;
+
+  /* W3C */
+  display:box;
+  box-pack:center;
+  box-align:center;
 }
 
 #wrapper {
@@ -93,6 +104,7 @@ a {
   margin: 20px 0 40px;
   -webkit-appearance: none;
   background-color: #fff;
+  padding: 0 5px;
 }
 
 #useraction option {
