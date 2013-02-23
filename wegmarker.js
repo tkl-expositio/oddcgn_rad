@@ -34,5 +34,9 @@ function errorCallback(error) {
 
 // OSM XML abrufen -> Nur Radwege in der bbox
 function getNodes(bbox) {
-    xmlDoc = $.parseXML("http://overpass-api.de/api/interpreter?data=way[highway=cycleway](50.995,6.995,51.005,7.005);out+meta;")
+    $.xmlDoc = $.parseXML("http://overpass-api.de/api/interpreter?data=way[highway=cycleway](50.995,6.995,51.005,7.005);out+meta;")
+}
+
+function senddata() {
+  return true;
 }
