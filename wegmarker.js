@@ -31,3 +31,8 @@ function errorCallback(error) {
           make_layer("http://overpass-api.de/api/interpreter?data=[timeout:1];node[surface](bbox);out+skel;(way[surface](bbox);node(w););out+skel;", "green")])
 
     }
+
+// OSM XML abrufen -> Nur Radwege in der bbox
+function getNodes(bbox) {
+    xmlDoc = $.parseXML("http://overpass-api.de/api/interpreter?data=way[highway=cycleway](50.995,6.995,51.005,7.005);out+meta;")
+}
