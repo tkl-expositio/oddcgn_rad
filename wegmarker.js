@@ -89,26 +89,31 @@ function init(){
 }
 
 // OSM XML abrufen -> Nur Radwege in der bbox
-function getNodes(bbox) {
+function getNodes(bbox, surface) {
   // map.getMapExtent() kartenauschnitt in proj. Ko.Daten
-  var LON = 7,
-      LAT = 51;
+  //var LON = 7,
+  //    LAT = 51;
 
-  url = "http://overpass-api.de/api/interpreter?data=way[highway=cycleway](" + (LAT - 0.005) + "," + (LON - 0.005) + "," + (LAT + 0.005) + "," + (LON + 0.005) + ");out+meta;";
+  //url = "http://overpass-api.de/api/interpreter?data=way[highway=cycleway](" + (LAT - 0.005) + "," + (LON - 0.005) + "," + (LAT + 0.005) + "," + (LON + 0.005) + ");out+meta;";
+  url = "http://overpass-api.de/api/interpreter?data=way[highway=cycleway](" + bbox.bottom + "," + bbox.left + "," + bbox.top + "," + bbox.right + ");out+meta;";
    xml = $.get(url, function(data) {
       alert("Data Loaded: " + data);
-      
+
+      // filter "way id"
       wayid = xml.responseText;
       wayid = wayid.match(/.*way id=\"(\d*)*./)[1];
+      // generate proxy url
+      surfurl = "http://overpass-api.de/api/wegmarker?id="+wayid+"&value="+surface;
     return data;});
 }
 
 
 function senddata() {
   var surface = 0;
-  getNodes();
 
   surface = $('#surface').val();
+  bbox = map.getMaxExtent();
+  getNodes(bbox,surface);
   
 
   return true;
