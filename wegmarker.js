@@ -41,6 +41,7 @@ function init(){
 
                 // Karten auf die Grenzen zoomen
                 map.zoomToExtent(extent);
+                map.setOptions({restrictedExtent: extent});
 
                     var lonLat = new OpenLayers.LonLat( LON , LAT )
                                 .transform(
