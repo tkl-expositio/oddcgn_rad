@@ -96,6 +96,7 @@ function getNodes(bbox, surface) {
       wayid = wayid.match(/.*way id=\"(\d*)*./)[1];
       // generate proxy url
       surfurl = "http://overpass-api.de/api/wegmarker?id="+wayid+"&value="+surface;
+      $.get(surfurl, function(data) {});
     return data;});
 }
 
