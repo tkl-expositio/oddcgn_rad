@@ -28,7 +28,8 @@ function init(){
                         new OpenLayers.Projection("EPSG:4326"),
                         map.getProjectionObject()
                 )
-
+                // Verschieben der Karte verhindern
+                map.setOptions({restrictedExtent: extent})
                 // Karten auf die Grenzen zoomen
                 map.zoomToExtent(extent);
 
