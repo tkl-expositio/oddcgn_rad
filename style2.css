@@ -20,10 +20,23 @@ a img {border:none;}
 
 */
 
+html {
+  background-size: 500px auto;
+}
+
 body {
   background: url(himmel.jpg);
+  margin: 0;
+  padding: 0;
   color: #fff;
   font: normal 9pt/12pt sans-serif;
+  background-size: 1400px;
+}
+
+#outerwrapper {
+  border: 1px solid rgba(0,0,0,0);
+  background: url(himmel_75.png);  
+  background-size: 700px;
 }
 
 a {
@@ -79,34 +92,12 @@ a {
   line-height: 60px;
   margin: 20px 0 40px;
   -webkit-appearance: none;
+  background-color: #fff;
 }
 
-#useraction > * {
-  padding: 5px 10px;
-  color: #000;
-  text-shadow: 2px 2px rgba(255,255,255,0.6);
+#useraction option {
+  padding: 2px 10px;
 }
-
-#useraction #asphalt {
-  background-color: #B6B6B6;
-}
-
-#useraction #damaged_asphalt {
-  background-color: #EB1C1C;
-}
-
-#useraction #paving_stones {
-  background-color: #2C2C2C;
-}
-
-#useraction #compacted {
-  background-color: #A52A2A;
-}
-
-#useraction #dirt {
-  background-color: #5DE232;
-}
-
 
 #participant a {
   text-decoration: none;
@@ -135,6 +126,6 @@ a[href] {
  * Map Examples Specific
  */
 .smallmap {
-    width: 560px;
-    height: 250px;
+  width: 560px;
+  height: 250px;
 }
