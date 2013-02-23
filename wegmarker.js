@@ -1,9 +1,10 @@
 // Datahandling App
+
+var LON = 0,
+     LAT= 0;
         
 var map, layer;
 function init(){
- var LON = 0,
-     LAT= 0;
 
       $.ajax({
         url: "http://api.openstreetmap.org/api/0.6/changeset/create",
@@ -31,6 +32,7 @@ function init(){
                 LON = parseFloat(position.coords.longitude);
                 LAT = parseFloat(position.coords.latitude);
                 console.log("LAT:" + position.coords.latitude +" LONG:" + position.coords.longitude);
+                alert(" " + LON + " " + LAT);
 
                 // Grenzen für die Karte (wie unten bei getNodes())
                 var extent = new OpenLayers.Bounds((LON - 0.005), (LAT - 0.005), (LON + 0.005), (LAT + 0.005));
@@ -94,8 +96,8 @@ function getNodes(bbox, surface) {
   //var LON = 7,
   //    LAT = 51;
 
-  //url = "http://overpass-api.de/api/interpreter?data=way[highway=cycleway](" + (LAT - 0.005) + "," + (LON - 0.005) + "," + (LAT + 0.005) + "," + (LON + 0.005) + ");out+meta;";
-  url = "http://overpass-api.de/api/interpreter?data=way[highway=cycleway](" + bbox.bottom + "," + bbox.left + "," + bbox.top + "," + bbox.right + ");out+meta;";
+  url = "http://overpass-api.de/api/interpreter?data=way[highway=cycleway](" + (LAT - 0.005) + "," + (LON - 0.005) + "," + (LAT + 0.005) + "," + (LON + 0.005) + ");out+meta;";
+//   url = "http://overpass-api.de/api/interpreter?data=way[highway=cycleway](" + bbox.bottom + "," + bbox.left + "," + bbox.top + "," + bbox.right + ");out+meta;";
    xml = $.get(url, function(data) {
       alert("Data Loaded: " + data);
 
