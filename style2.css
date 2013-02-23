@@ -54,7 +54,17 @@ a {
   font-size: 35px;
   line-height: 60px;
   padding: 5px 10px;
-  margin-bottom: 40px;
+  margin: 20px 0 40px;
+  -webkit-appearance: none;
+}
+
+#useraction select {
+  background-color: #fff;
+}
+
+#useraction #auswahl {
+  /*background: url(pfeil.png) ;*/
+  border: 2px solid red;
 }
 
 #participant a {
