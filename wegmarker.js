@@ -17,9 +17,21 @@ function init(){
                     map.getProjectionObject()
                 ), 15
                 );
+
                 LON = parseFloat(position.coords.longitude);
                 LAT = parseFloat(position.coords.latitude);
                 console.log("LAT:" + position.coords.latitude +" LONG:" + position.coords.longitude);
+
+                // Grenzen für die Karte (wie unten bei getNodes())
+                var extent = new OpenLayers.Bounds((LON - 0.0005), (LAT - 0.0005), (LON + 0.0005), (LAT + 0.0005));
+                extent.transform(
+                        new OpenLayers.Projection("EPSG:4326"),
+                        map.getProjectionObject()
+                )
+                // Verschieben der Karte verhindern
+                map.setOptions({restrictedExtent: extent})
+                // Karten auf die Grenzen zoomen
+                map.zoomToExtent(extent);
 
                     var lonLat = new OpenLayers.LonLat( LON , LAT )
                                 .transform(
@@ -42,17 +54,14 @@ function init(){
 
     // Map options
     var options = {
-                restrictedExtent: extent
+             //   restrictedExtent: extent
             };
-    // Grenzen für die Karte (wie unten bei getNodes())
-    var extent = new OpenLayers.Bounds(8, 44.5, 19, 50);
 
     map = new OpenLayers.Map( 'map', options);
     navigator.geolocation.getCurrentPosition(successCallback,
                                            errorCallback,
                                           {maximumAge:600000});
-    // Karten auf die Grenzen zoomen
-    map.zoomToExtent(extent);
+
 
 
     layer = new OpenLayers.Layer.OSM( "Simple OSM Map");
