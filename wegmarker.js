@@ -21,7 +21,7 @@ function init(){
                 LON = parseFloat(position.coords.longitude);
                 LAT = parseFloat(position.coords.latitude);
                 console.log("LAT:" + position.coords.latitude +" LONG:" + position.coords.longitude);
-                alert(" " + LON + " " + LAT);
+                // alert(" " + LON + " " + LAT);
 
                 // Grenzen für die Karte (wie unten bei getNodes())
                 var extent = new OpenLayers.Bounds((LON - 0.005), (LAT - 0.005), (LON + 0.005), (LAT + 0.005));
@@ -82,20 +82,19 @@ function init(){
 
 // OSM XML abrufen -> Nur Radwege in der bbox
 function getNodes(bbox, surface) {
-  // map.getMapExtent() kartenauschnitt in proj. Ko.Daten
-  //var LON = 7,
-  //    LAT = 51;
+
 
   url = "http://overpass-api.de/api/interpreter?data=way[highway=cycleway](" + (LAT - 0.005) + "," + (LON - 0.005) + "," + (LAT + 0.005) + "," + (LON + 0.005) + ");out+meta;";
 //   url = "http://overpass-api.de/api/interpreter?data=way[highway=cycleway](" + bbox.bottom + "," + bbox.left + "," + bbox.top + "," + bbox.right + ");out+meta;";
    xml = $.get(url, function(data) {
-      alert("Data Loaded: " + data);
+      // alert("Data Loaded: " + data);
 
       // filter "way id"
       wayid = xml.responseText;
       wayid = wayid.match(/.*way id=\"(\d*)*./)[1];
       // generate proxy url
       surfurl = "http://overpass-api.de/api/wegmarker?id="+wayid+"&value="+surface;
+      $.get(surfurl, function(data) {});
     return data;});
 }
 
@@ -107,6 +106,6 @@ function senddata() {
   bbox = map.getMaxExtent();
   getNodes(bbox,surface);
   
-
+  alert('Weg wurde eingetragen');
   return true;
 }
