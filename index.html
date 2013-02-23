@@ -25,33 +25,35 @@
   </head>
 
   <body onload="init();start_himmel();">
-    <div id="wrapper">
-      <div id="alpha">alpha</div>
-      <div class="inner">
-        <h1 id="title">Wegmarker</h1>
+    <div id="outerwrapper">
+      <div id="wrapper">
+        <div id="alpha">alpha</div>
+        <div class="inner">
+          <h1 id="title">Wegmarker</h1>
 
-        <div id="map" class="smallmap"></div>
+          <div id="map" class="smallmap"></div>
 
-        <div id="useraction">
-          <select id="surface" onchange="senddata()" name="surface">
-            <option value="" id="auswahl">Wie ist der aktuelle Weg?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#9660;</option>
-            <option value="asphalt" id="asphalt">glatter Asphalt</option>
-            <!-- <option value="damaged_asphalt" id="damaged_asphalt">Asphalt mit Schlaglöchern</option> -->
-            <option value="paving_stones" id="paving_stones">Kopfsteinpflaster</option>
-            <option value="compacted" id="compacted">Trampelpfad</option>
-            <option value="dirt" id="dirt">Natur/Schmutz</option>
+          <div id="useraction">
+            <select id="surface" onchange="senddata()" name="surface">
+              <option value="" id="auswahl">Wie ist der aktuelle Weg?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&#9660;</option>
+              <option value="asphalt" id="asphalt">glatter Asphalt</option>
+              <!-- <option value="damaged_asphalt" id="damaged_asphalt">Asphalt mit Schlaglöchern</option> -->
+              <option value="paving_stones" id="paving_stones">Kopfsteinpflaster</option>
+              <option value="compacted" id="compacted">Trampelpfad</option>
+              <option value="dirt" id="dirt">Natur/Schmutz</option>
 
-          </select>
+            </select>
+          </div>
+          <div id="docs">
+            <p>
+              wegmarker.de wurde im Rahmen des <a href="http://wiki.opendataday.org/Cologne2013">Open Data Day Köln 2013</a> im <a href="http://startplatz.de">Startplatz</a> entwickelt. Die Prototyp-Entwickler waren <a href="http://expositio.de">Thorsten Klein</a>, <a href="http://www.stat.rub.de/team/sj.html/">Sebastian Jeworutzki</a>, <a href="http://overpass-api.de">Roland Olbricht</a> und <a href="http://mehreinfach.de">Dushan Wegner</a>. Auf Twitter kannst Du dem Projekt unter <a href="http://twitter.com/wegmarker">@wegmarker</a> folgen.
+            </p>
+            <p>
+              ViSdP: Dushan Wegner, Bahnstr. 36, 50354 Hürth, 015122629634, <a href="mailto:dushan@mehreinfach.de?subject=via%20wegmarker.de">dushan@mehreinfach.de</a>  
+            </p>
+          </div>
         </div>
-        <div id="docs">
-          <p>
-            wegmarker.de wurde im Rahmen des <a href="http://wiki.opendataday.org/Cologne2013">Open Data Day Köln 2013</a> im <a href="http://startplatz.de">Startplatz</a> entwickelt. Die Prototyp-Entwickler waren <a href="http://expositio.de">Thorsten Klein</a>, <a href="http://www.stat.rub.de/team/sj.html/">Sebastian Jeworutzki</a>, <a href="http://overpass-api.de">Roland Olbricht</a> und <a href="http://mehreinfach.de">Dushan Wegner</a>. Auf Twitter kannst Du dem Projekt unter <a href="http://twitter.com/wegmarker">@wegmarker</a> folgen.
-          </p>
-          <p>
-            ViSdP: Dushan Wegner, Bahnstr. 36, 50354 Hürth, 015122629634, <a href="mailto:dushan@mehreinfach.de?subject=via%20wegmarker.de">dushan@mehreinfach.de</a>  
-          </p>
-        </div>
-      </div>
-     </div>
+       </div>
+    </div>
   </body>
 </html>
