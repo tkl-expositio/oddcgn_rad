@@ -21,36 +21,44 @@ a img {border:none;}
 */
 
 body {
-    background: url(himmel.jpg);
-    color: #fff;
-    font: normal 9pt/12pt sans-serif;
+  background: url(himmel.jpg);
+  color: #fff;
+  font: normal 9pt/12pt sans-serif;
 }
 
 a {
-    color: #fff;
-    text-decoration: underline;
+  color: #fff;
+  text-decoration: underline;
 }
 
 #wrapper {
-    border: 3px solid white;
-    margin: 20px auto;
-    -webkit-border-radius: 20px;
-    -moz-border-radius: 20px;
-    border-radius: 20px;
-    width: 600px;
-    background: #004A94;
+  border: 3px solid white;
+  margin: 20px auto;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
+  width: 600px;
+  background: #004A94;
 }
 
 #wrapper .inner {
-    margin: 20px;
+  margin: 20px;
 }
 
 #docs {
-    margin-top: 40px;
+  margin-top: 20px;
+}
+
+#useraction select {
+  width: 560px;
+  font-size: 35px;
+  line-height: 60px;
+  padding: 5px 10px;
+  margin-bottom: 40px;
 }
 
 #participant a {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 h1 {
