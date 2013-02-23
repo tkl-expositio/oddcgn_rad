@@ -40,12 +40,20 @@ function init(){
               // Update a div element with error.message.
     }
 
-
+    // Map options
+    var options = {
+                restrictedExtent: extent
+            };
+    // Grenzen für die Karte (wie unten bei getNodes())
+    var extent = new OpenLayers.Bounds(8, 44.5, 19, 50);
 
     map = new OpenLayers.Map( 'map');
     navigator.geolocation.getCurrentPosition(successCallback,
                                            errorCallback,
                                           {maximumAge:600000});
+    // Karten auf die Grenzen zoomen
+    map.zoomToExtent(extent);
+
 
     layer = new OpenLayers.Layer.OSM( "Simple OSM Map");
     map.addLayer(layer);
