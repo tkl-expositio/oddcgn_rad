@@ -6,17 +6,6 @@ var LON = 0,
 var map, layer;
 function init(){
 
-      $.ajax({
-        url: "http://api.openstreetmap.org/api/0.6/changeset/create",
-        type: "PUT",
-        username: "wegmarker_bot",
-        password: "barrierpothole",
-        success: function(data)
-        {
-          alert("PUT: " + data);
-        }
-      });
-
 
 
     function successCallback(position) {
@@ -43,6 +32,7 @@ function init(){
 
                 // Karten auf die Grenzen zoomen
                 map.zoomToExtent(extent);
+                map.setOptions({restrictedExtent: extent});
 
                     var lonLat = new OpenLayers.LonLat( LON , LAT )
                                 .transform(
