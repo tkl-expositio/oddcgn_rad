@@ -31,3 +31,7 @@ function errorCallback(error) {
           make_layer("http://overpass-api.de/api/interpreter?data=[timeout:1];node[surface](bbox);out+skel;(way[surface](bbox);node(w););out+skel;", "green")])
 
     }
+
+function senddata() {
+  return true;
+}
