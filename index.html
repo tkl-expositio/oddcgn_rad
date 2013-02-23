@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="style.css" type="text/css">
     <link rel="stylesheet" href="style2.css" type="text/css">
     <script src="http://openlayers.org/api/OpenLayers.js"></script>
+    <!-- Overpass API für einfachere Layer -->
+    <script src="http://overpass-api.de/overpass.js"></script>
     <script type="text/javascript">
         
     var map, layer;
@@ -24,7 +26,7 @@
                 new OpenLayers.LonLat(position.coords.longitude, position.coords.latitude).transform(
                     new OpenLayers.Projection("EPSG:4326"),
                     map.getProjectionObject()
-                ), 12
+                ), 15
                 );
     }
     function errorCallback(error) {
@@ -35,6 +37,9 @@
             map = new OpenLayers.Map( 'map');
             layer = new OpenLayers.Layer.OSM( "Simple OSM Map");
             map.addLayer(layer);
+            // make_layer aus overpass_api -> alles nodes mit surface tag
+            map.addLayers([
+              make_layer("http://overpass-api.de/api/interpreter?data=[timeout:1];node[surface](bbox);out+skel;(way[surface](bbox);node(w););out+skel;", "green")])
     
         }
     </script>
