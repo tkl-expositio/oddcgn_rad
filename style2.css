@@ -39,6 +39,7 @@ a {
   border-radius: 20px;
   width: 600px;
   background: #004A94;
+  overflow: hidden;
 }
 
 #wrapper .inner {
@@ -49,23 +50,63 @@ a {
   margin-top: 20px;
 }
 
+#alpha {
+  font-size: 30px;
+  line-height: 30px;
+  position: relative;
+  display: block;
+  padding: 5px;
+  width: 100px;
+  text-align: center;
+  background: red;
+  top: 35px;
+  left: -50px;
+  width: 200px;
+  font-family: 'fonts/Fette1451Engschrift';
+  text-transform: uppercase;
+  text-shadow: 2px 2px rgba(0,0,0,0.35);
+  box-shadow: 2px 2px rgba(0,0,0,0.15);
+  transform:rotate(-45deg);
+  -ms-transform:rotate(-45deg); /* IE 9 */
+  -moz-transform:rotate(-45deg);  /*Firefox*/ 
+  -webkit-transform:rotate(-45deg); /* Safari and Chrome */
+  -o-transform:rotate(-45deg); /* Opera */
+}
+
 #useraction select {
   width: 560px;
   font-size: 35px;
   line-height: 60px;
-  padding: 5px 10px;
   margin: 20px 0 40px;
   -webkit-appearance: none;
 }
 
-#useraction select {
-  background-color: #fff;
+#useraction > * {
+  padding: 5px 10px;
+  color: #000;
+  text-shadow: 2px 2px rgba(255,255,255,0.6);
 }
 
-#useraction #auswahl {
-  /*background: url(pfeil.png) ;*/
-  border: 2px solid red;
+#useraction #asphalt {
+  background-color: #B6B6B6;
 }
+
+#useraction #damaged_asphalt {
+  background-color: #EB1C1C;
+}
+
+#useraction #paving_stones {
+  background-color: #2C2C2C;
+}
+
+#useraction #compacted {
+  background-color: #A52A2A;
+}
+
+#useraction #dirt {
+  background-color: #5DE232;
+}
+
 
 #participant a {
   text-decoration: none;
@@ -77,7 +118,7 @@ h1 {
   line-height: 60px;
   font-weight: normal;
   font-style: normal;
-  margin: 30px 0;
+  margin:  -20px 0 30px;
   padding: 0;
   text-align: center;
 }
